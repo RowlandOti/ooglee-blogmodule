@@ -11,11 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4|~5",
-        "thujohn/rss": "dev-master",
-        "cviebrock/eloquent-sluggable": "1.0.*",
-        "fzaninotto/faker": "1.4.*",
-        "mailgun/mailgun-php": "~1.7.2"
+        "illuminate/support": "~4|~5"
     },
     "autoload": {
         "psr-4": {
