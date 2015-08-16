@@ -11,24 +11,16 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.2.*",
+        "illuminate/support": "~4|~5",
         "thujohn/rss": "dev-master",
         "cviebrock/eloquent-sluggable": "1.0.*",
-        "fzaninotto/faker": "1.4.*"
+        "fzaninotto/faker": "1.4.*",
+        "mailgun/mailgun-php": "~1.7.2"
     },
     "autoload": {
-        "classmap": [
-            "src/controllers",
-            "src/migrations",
-            "src/models",
-            "src/models/entities",
-            "src/models/repositories",
-            "src/models/services",
-            "src/extentions",
-            "src/seeds"
-        ],
-        "psr-0": {
-            "Rowland\\LaravelBlog\\": "src/"
+        "psr-4": {
+            "Rowland\\LaravelBlog\\": "src/",
+            "Ooglee\\": "src/"
         }
     },
     "minimum-stability": "dev"

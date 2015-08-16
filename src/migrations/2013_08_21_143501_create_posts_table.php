@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration {
@@ -11,26 +12,22 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-    	Schema::create('fbf_blog_posts', function($table)
+    	Schema::create('tb_blog_posts', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('main_image')->nullable();
-	    $table->string('main_image_alt')->nullable();
-	    $table->string('you_tube_video_id')->nullable();
+		    $table->string('main_image_alt')->nullable();
+		    $table->string('you_tube_video_id')->nullable();
             $table->text('summary');
             $table->text('content');
-	    $table->string('link_text')->nullable();
-	    $table->string('link_url')->nullable();
-	    $table->boolean('in_rss');
-	    $table->boolean('is_sticky');
-	    $table->string('slug')->unique();
-	    $table->string('page_title');
-	    $table->text('meta_description');
-	    $table->text('meta_keywords');
+		    $table->boolean('is_sticky');
+		    $table->text('meta_description');
+		    $table->text('meta_keywords');
             $table->enum('status', array('DRAFT', 'APPROVED'))->default('DRAFT');
-	    $table->dateTime('published_date')->nullable();
-	    $table->dateTime('deleted_at')->nullable();
+		    $table->dateTime('published_date')->nullable();
+		    $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
 	}
@@ -42,7 +39,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('fbf_blog_posts');
+        Schema::drop('tb_blog_posts');
 	}
 
 }
