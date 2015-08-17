@@ -1,7 +1,7 @@
 {
-    "name": "rowland/laravelblog",
-    "description": "A Laravel 4 package to add a simple blog to a site",
-    "keywords": ["laravel","blog"],
+    "name": "rowland/ooglee-blog",
+    "description": "A Laravel 5 Ooglee-module to add a simple blog to a site",
+    "keywords": ["laravel","ooglee","blog"],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4|~5"
+        "illuminate/support": "~4|~5",
+        "rowland/ooglee-platform": "dev-master",
     },
     "autoload": {
         "psr-4": {

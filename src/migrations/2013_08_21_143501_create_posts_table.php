@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration {
 		    $table->string('you_tube_video_id')->nullable();
             $table->text('summary');
             $table->text('content');
+            $table->int('count_views');
 		    $table->boolean('is_sticky');
 		    $table->text('meta_description');
 		    $table->text('meta_keywords');

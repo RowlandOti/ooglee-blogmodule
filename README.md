@@ -1,7 +1,7 @@
 Laravel Blog
 ============
 
-A Laravel 4 package to add a simple blog to a site
+A Laravel 5 Ooglee-module to add a simple blog to a site
 
 ## Features
 
@@ -20,7 +20,7 @@ A Laravel 4 package to add a simple blog to a site
 
 Add the following to you composer.json file (Recommend swapping "dev-master" for the latest release)
 
-    "rowland/laravelblog": "dev-master"
+    "rowland/ooglee-blog": "dev-master"
 
 Run
 
