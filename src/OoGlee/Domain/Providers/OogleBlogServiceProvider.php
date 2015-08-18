@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelBlogServiceProvider extends ServiceProvider {
+class OogleBlogServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -20,17 +20,10 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 	{
 		// Passing custom namespace to package method
 		// package('vendor/package', 'custom-namespace')
-		$this->package('rowland/laravelblog','laravelblog');
+		$this->package('rowland/ooglee-blog','ooglee-blog');
 
-        // Package resources now accessed via custom-namespace
-		if (\Config::get('laravelblog::routes.use_package_routes', true))
-		{
-			include __DIR__.'/../../routes.php';
-		}
-
-		\App::register('Repositories\Post\PostServiceProvider');
-		\App::register('Services\Post\PostServiceServiceProvider');
-
+		\App::register('Ooglee\Domain\Providers\RouteServiceProvider');
+		\App::register('Ooglee\Domain\Providers\EventServiceProvider');
 	}
 
 	/**
