@@ -1,15 +1,18 @@
-<?php namespace Ooogle\Domain\Providers;
+<?php namespace Ooglee\Domain\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Ooglee\Domain\Providers\LaravelServiceProvider;
 
-class OogleeBlogServiceProvider extends ServiceProvider {
+class OogleeBlogServiceProvider extends LaravelServiceProvider {
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+	protected $packageVendor = 'rowland';
+
+	protected $packageName = 'ooglee-blog';
+
+	protected $packageDir = __DIR__;
+
+	protected $packageNameCapitalized = 'Ooglee-blog';
+
+	protected $packageConfigClass = 'Ooglee\Infrastructure\Config\OogleeBlogConfig';
 
 	/**
 	 * Bootstrap the application events.
@@ -18,12 +21,11 @@ class OogleeBlogServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		// Passing custom namespace to package method
-		// package('vendor/package', 'custom-namespace')
-		$this->package('rowland/ooglee-blog','ooglee-blog');
+		parent::boot();
 
-		\App::register('Ooglee\Domain\Providers\RouteServiceProvider');
-		\App::register('Ooglee\Domain\Providers\EventServiceProvider');
+		\App::register('Ooglee\Domain\Providers\RouteBlogServiceProvider');
+		\App::register('Ooglee\Domain\Providers\EventBlogServiceProvider');
+		\App::register('Ooglee\Domain\Providers\PostServiceProvider');
 	}
 
 	/**
@@ -33,7 +35,7 @@ class OogleeBlogServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
+ 		parent::register();
 	}
 
 	/**
@@ -45,5 +47,4 @@ class OogleeBlogServiceProvider extends ServiceProvider {
 	{
 		return array();
 	}
-
 }

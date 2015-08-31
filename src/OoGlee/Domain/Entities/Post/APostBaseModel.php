@@ -1,7 +1,8 @@
-<?php namespace App\Ooglee\Domain\Entities\Post;
+<?php namespace Ooglee\Domain\Entities\Post;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Ooglee\Domain\Entities\Post\IPost;
+use Illuminate\Http\Response;
+use Ooglee\Domain\Entities\Post\Contracts\IPost;
 
 class APostBaseModel extends Model implements IPost {
 

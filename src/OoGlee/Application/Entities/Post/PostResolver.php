@@ -5,7 +5,7 @@ use Ooglee\Domain\Entities\Post\Contract\IPostRepository;
 use Illuminate\Http\Request;
 
 /**
- * Class PostResolver --  
+ * Class PostResolver --   - Resolution to identify the post item
  * 
  * 
  * @link          http://skyllabler.com/ooglee
@@ -17,7 +17,7 @@ class PostResolver
 {
 
     /**
-     * The post repository.
+     * The post repository
      *
      * @var IPostRepository
      */

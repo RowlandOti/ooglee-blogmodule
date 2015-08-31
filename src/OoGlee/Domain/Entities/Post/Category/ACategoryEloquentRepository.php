@@ -1,11 +1,9 @@
-<?php namespace Ooglee\Domain\Entities\Post;
+<?php namespace Ooglee\Domain\Entities\Post\Category;
 
 use Eloquent;
-use Ooglee\Domain\Entities\Post\Contracts\IPost;
-use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
 use Ooglee\Domain\Contracts\IBaseRepository;
-
-abstract class APostEloquentRepository implements IBaseRepository {
+ 
+abstract class ACategoryEloquentRepository implements IBaseRepository {
 
 	/**
 	* The Abstract ABaseRepository provides default implementations of the methods defined
@@ -15,16 +13,9 @@ abstract class APostEloquentRepository implements IBaseRepository {
 
 	protected $modelClassInstance;
 
-	public function __construct(IPost $modelClassInstance)
+	public function __construct(ICategory $modelClassInstance)
 	{
 		$this->modelClassInstance = $modelClassInstance;
-    }
-
-    public function getAll(array $related = null)
-    {
-        $related = $this->modelClassInstance->all();
-
-        return $related;
     }
 
 	public function findById($id)
@@ -39,20 +30,6 @@ abstract class APostEloquentRepository implements IBaseRepository {
 
         return $related;
 	}
-
-	/**
-     * Find many posts by category.
-     *
-     * @param ICategory $category
-     * @param null  $limit
-     * @return EntryCollection
-     */
-    public function findManyByCategory(ICategory $category, $limit = null)
-    {
-        $related = $this->modelClassInstance->active()->where('category_id', $category->getId())->paginate($limit);
-
-        return $related;
-    }
 
     /**
      * Get where posts.
@@ -69,23 +46,11 @@ abstract class APostEloquentRepository implements IBaseRepository {
     /**
      * Get recent posts.
      * @param null  $limit
-     * @return PostCollection
+     * @return EntryCollection
      */
     public function getRecent($limit = null)
     {
         $related = $this->modelClassInstance->active()->paginate($limit);
-
-        return $related;
-    }
-
-    /**
-     * Get sticky posts.
-     * @param null  $limit
-     * @return PostCollection
-     */
-    public function getSticky($limit = null)
-    {
-        $related = $this->modelClassInstance->active()->where('is_sticky', true)->paginate($limit);
 
         return $related;
     }

@@ -4,7 +4,7 @@ use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Illuminate\Routing\ResponseFactory;
 
 /**
- * Class PostContent --  
+ * Class PostContent --  -- Make PostResponse
  * 
  * @link          http://skyllabler.com/ooglee
  * @author        Skyllabler, Inc. <coder@skyllabler.com>

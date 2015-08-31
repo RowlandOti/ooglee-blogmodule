@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration {
+class CreatePostTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-    	Schema::create('tb_blog_posts', function(Blueprint $table)
+    	Schema::create('tb_blog_post', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('title');
@@ -22,12 +22,12 @@ class CreatePostsTable extends Migration {
 		    $table->string('you_tube_video_id')->nullable();
             $table->text('summary');
             $table->text('content');
-            $table->int('count_views');
+            $table->bigInteger('count_views');
 		    $table->boolean('is_sticky');
 		    $table->text('meta_description');
 		    $table->text('meta_keywords');
             $table->enum('status', array('DRAFT', 'APPROVED'))->default('DRAFT');
-		    $table->dateTime('published_date')->nullable();
+		    $table->dateTime('published_at')->nullable();
 		    $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -40,7 +40,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('tb_blog_posts');
+        Schema::drop('tb_blog_post');
 	}
 
 }

@@ -1,15 +1,24 @@
-<? php Ooglee\Framework\Http\Application\Controllers
+<?php namespace Ooglee\Framework\Http\Controllers\Application;
 
-use Ooglee\Framework\Http\Controllers;
-use Ooglee\Application\Entities\Post\PostService;
+use Ooglee\Framework\Http\Controllers\Controller;
+use Ooglee\Application\Entities\Post\Services\PostService;
+use Ooglee\Infrastructure\Config\OogleeBlogConfig;
+use Ooglee\Domain\CommandBus\ICommandBus;
 
 class PostsController extends Controller {
 
-	protected $modelService;
+	// Our Command bus
+    protected $bus;
+    // Post service
+    private $modelService;
+    // Blog configuration file
+    private $config;
 
-    public function __construct(PostService $modelService)
+    public function __construct(ICommandBus $bus, PostService $modelService, OogleeBlogConfig $config)
     {
         $this->modelService = $modelService;
+        $this->bus = $bus;
+        $this->config = $config;
     }
 
    /**
@@ -17,11 +26,11 @@ class PostsController extends Controller {
     *
     * @return Response
     */
-    public function index()
+    public function getIndex()
     {   
         $response = $this->modelService->getAll();
-
-        return view('post.index', compact('response'));
+        //return resources listing view
+        return view($this->config->get('config.post_index.index'), compact('response'));
     }
 
      /**
@@ -30,11 +39,25 @@ class PostsController extends Controller {
     * @param Event $id
     * @return Response
     */
-    public function show($id)
+    public function getShow(PostResolver $resolver)
     {
-        $response = $this->modelService->getBy($id);
+        if (!$post = $resolver->resolve()) 
+        {
+            abort(404);
+        }
 
-        return view('post.view', compact('response'));
+        $command = new ShowPostCommand($post);
+
+        try 
+        {
+            $this->bus->execute($command);
+        }
+        catch(\DomainException $e)
+        {
+            
+        }
+
+        return $post->getResponse();
         
     }
 }

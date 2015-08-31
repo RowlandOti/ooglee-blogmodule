@@ -1,14 +1,15 @@
-<?php Ooglee\Application\Entities\Post\Services
+<?php namespace Ooglee\Application\Entities\Post\Services;
 
 use Helpers\Response\MyResponse;
 use Ooglee\Application\Entities\ABaseService;
+use Ooglee\Application\Entities\Post\Services\APostBaseService;
 use Ooglee\Application\Entities\Post\Services\IPostService;
-use Ooglee\Domain\Entities\Post\Repositories\IPostRepository;
+use Ooglee\Domain\Entities\Post\Contracts\IPostRepository;
 
 /**
 * Our Service, containing all useful methods for business logic around Post
 */
-class PostService extends ABaseService implements IPostService
+class PostService extends APostBaseService implements IPostService
 {
     // Containing our repositoryClassInstance to make all our database calls to
     protected $repositoryClassInstance;

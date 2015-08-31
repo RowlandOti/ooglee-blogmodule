@@ -2,7 +2,7 @@
 
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Ooglee\Domain\Entities\Post\Contracts\IPostRepository;
-use Ooglee\Domain\Entities\ABaseEloquentRepository;
+use Ooglee\Domain\Entities\Post\APostEloquentRepository;
 
  class PostEloquentRepository extends APostEloquentRepository implements IPostRepository {
 

@@ -5,7 +5,7 @@ use Illuminate\View\Factory;
 use Robbo\Presenter\Decorator;
 
 /**
- * Class PostContent --  
+ * Class PostContent --  -- Make Post contents in view
  * 
  * 
  * @link          http://skyllabler.com/ooglee

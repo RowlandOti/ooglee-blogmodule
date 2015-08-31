@@ -17,7 +17,7 @@ class PostLoader
 {
 
     /**
-     * The template data.
+     * The template data -- -- Loading post data
      *
      * @var ViewTemplate
      */

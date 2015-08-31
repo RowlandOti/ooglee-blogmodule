@@ -1,4 +1,5 @@
-<?php namespace Ooglee\Domain\Entities\Post\Contracts;
+<?php namespace Ooglee\Domain\Entities\Post\Category\Contracts;
+
 
 use Illuminate\Http\Response;
 
@@ -10,7 +11,7 @@ use Illuminate\Http\Response;
  * @author        Otieno Rowland <rowlandmtetezi@skyllabler.com>
  * @package       Oogle\PostsModule
  */
-interface IPost
+interface ICategory
 {
 
     /**
@@ -19,27 +20,6 @@ interface IPost
      * @return string
      */
     public function path();
-
-    /**
-     * Return the combined meta title.
-     *
-     * @return string
-     */
-    public function metaTitle();
-
-    /**
-     * Return the combined meta keywords.
-     *
-     * @return string
-     */
-    public function metaKeywords();
-
-    /**
-     * Return the combined meta description.
-     *
-     * @return string
-     */
-    public function metaDescription();
 
     /**
      * Get the string ID.
@@ -62,34 +42,7 @@ interface IPost
      */
     public function getCategory();
 
-    /**
-     * Get the meta title.
-     *
-     * @return string
-     */
-    public function getMetaTitle();
-
-    /**
-     * Get the meta keywords.
-     *
-     * @return array
-     */
-    public function getMetaKeywords();
-
-    /**
-     * Get the meta description.
-     *
-     * @return string
-     */
-    public function getMetaDescription();
-
-    /**
-     * Get the live flag.
-     *
-     * @return bool
-     */
-    public function isLive();
-
+   
     /**
      * Get the path to the post's type layout.
      *

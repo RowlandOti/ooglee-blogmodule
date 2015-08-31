@@ -1,37 +1,43 @@
-<?php Ooglee\Framework\Http\Controllers\Admin
+<?php namespace Ooglee\Framework\Http\Controllers\Admin;
 
-use Ooglee\Framework\Http\Controllers;
+use Ooglee\Framework\Http\Controller;
 use Ooglee\Domain\CommandBus\ICommandBus;
 use Ooglee\Domain\Validation\ValidationException;
 use Ooglee\Domain\Entities\Post\Commands\CreatePostCommand;
 
 class PostsController extends Controller {
 
-	private $bus;
+    // Bus 
+  	private $bus;
+    // Blog configuration file
+    private $config;
 
-    public function __construct(ICommandBus $bus) 
+
+    public function __construct(ICommandBus $bus, OogleeBlogConfig $config) 
     {
         $this->bus = $bus;
     }
 
-    /**
-   * Create Post
+   /**
+   * Index all Resources
    * 
    * @return Redirect
    */
     public function getIndex()
     {
-       return view('admin.post.index',compact(''));
+      //return resource listing view
+      return view($this->config->get('config.post_index.index_admin'), compact(''));
     }
 
-    /**
-   * Create Post
+   /**
+   * Create new Post 
    * 
    * @return Redirect
    */
     public function getCreate()
     {
-       return view('admin.post.create',compact(''));
+      //return create resource view
+      return view($this->config->get('config.post_create.view'), compact(''));
     }
 
    /**
@@ -49,14 +55,15 @@ class PostsController extends Controller {
         }
         catch(ValidationException $e)
         {
-            return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
+            return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
+
         }
         catch(\DomainException $e)
         {
-            return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
+            return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
         }
 
-        return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
+        return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
     }
 
      /**
@@ -66,7 +73,8 @@ class PostsController extends Controller {
    */
     public function getEdit($id)
     {
-       return view('admin.post.edit',compact(''));
+      //return create resource view
+      return view($this->config->get('config.post_edit.view'), compact(''));
     }
 
    /**

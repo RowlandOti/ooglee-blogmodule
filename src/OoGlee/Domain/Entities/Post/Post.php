@@ -1,11 +1,14 @@
-<?php namespace Ooglee\Domain\Entities\Post
+<?php namespace Ooglee\Domain\Entities\Post;
 
 use DomainException;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Ooglee\Domain\Events\Eventable;
+use Ooglee\Domain\Events\EventableTrait;
+use Ooglee\Domain\Entities\Post\Contracts\IPost;
+use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
+use Ooglee\Domain\Entities\Post\APostBaseModel;
 use Ooglee\Domain\Contracts\IAggregateRoot;
 
 class Post extends APostBaseModel implements IAggregateRoot, IPost {
@@ -17,7 +20,7 @@ class Post extends APostBaseModel implements IAggregateRoot, IPost {
 	 *
 	 * @var string
 	 */
-	protected $table = 'tb_blog_posts';
+	protected $table = 'tb_blog_post';
 
   /**
    * Tell Database these are Dates
@@ -34,7 +37,7 @@ class Post extends APostBaseModel implements IAggregateRoot, IPost {
    */
   public function category()
   {
-      return $this->belongsTo('Ooglee\Domain\Entities\Post\Category');
+      return $this->belongsTo('Ooglee\Domain\Entities\Post\Category\Category');
   }
 
   /**
@@ -42,7 +45,7 @@ class Post extends APostBaseModel implements IAggregateRoot, IPost {
    * @param Category $category
    * @return $this
    */
-  public function setCategory(Category $category)
+  public function setCategory(ICategory $category)
   {
       $this->category()->associate($category);
 
@@ -69,15 +72,15 @@ class Post extends APostBaseModel implements IAggregateRoot, IPost {
   public function save(array $options = array())
   {
       // Do some testing before passing onto parent save method
-      if($this->category === null || $this->category->exists === false)
-      {
-          throw new DomainException('Post must be assigned a Category');
-      }
+      //if($this->category === null || $this->category->exists === false)
+      //{
+          //throw new DomainException('Post must be assigned a Category');
+      //}
 
-      if(!$this->exists)
-      {
-          $this->recordEvent(new PostWasCreatedEvent($this));
-      }
+      //if(!$this->exists)
+      //{
+         // $this->recordEvent(new PostWasCreatedEvent($this));
+      //}
 
       $saved = parent::save($options);
 

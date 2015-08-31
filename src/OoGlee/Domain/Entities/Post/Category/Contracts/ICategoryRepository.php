@@ -1,9 +1,8 @@
-<?php namespace Ooglee\Domain\Entities\Post\Contracts;
+<?php namespace Ooglee\Domain\Entities\Post\Category\Contracts;
 
 use Ooglee\Domain\Contracts\IBaseRepository;
-use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
 
-interface IPostRepository extends IBaseRepository {
+interface ICategoryRepository extends IBaseRepository {
 
     	/**
      *  In case of more Model specific implementations 
@@ -27,27 +26,10 @@ interface IPostRepository extends IBaseRepository {
     public function findById($id);
 
     /**
-     * Find many posts by category.
-     *
-     * @param ICategory $category
-     * @param null              $limit
-     * @return EntryCollection
-     */
-    public function findManyByCategory(ICategory $category, $limit = null);
-
-    /**
      * Get recent posts.
      *
      * @param null $limit
      * @return EntryCollection
      */
     public function getRecent($limit = null);
-
-    /**
-     * Get featured posts.
-     *
-     * @param null $limit
-     * @return EntryCollection
-     */
-    public function getSticky($limit = null);
 }
