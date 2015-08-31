@@ -8,10 +8,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Ooglee\Domain\Events\EventableTrait;
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
-use Ooglee\Domain\Entities\Post\APostBaseModel;
+use Ooglee\Domain\Entities\Post\PostBaseModel;
 use Ooglee\Domain\Contracts\IAggregateRoot;
 
-class Post extends APostBaseModel implements IAggregateRoot, IPost {
+class Post extends PostBaseModel implements IAggregateRoot, IPost {
 
 	use EventableTrait;
 
