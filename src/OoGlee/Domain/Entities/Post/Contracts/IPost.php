@@ -54,6 +54,12 @@ interface IPost
      * @return string
      */
     public function getSlug();
+    /**
+     * Get the title.
+     *
+     * @return string
+     */
+    public function getTitle();
 
     /**
      * Get the category.

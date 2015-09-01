@@ -2,7 +2,6 @@
 
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Illuminate\View\Factory;
-use Robbo\Presenter\Decorator;
 
 /**
  * Class PostContent --  -- Make Post contents in view
@@ -25,22 +24,14 @@ class PostContent
     protected $view;
 
     /**
-     * The decorator utility.
-     *
-     * @var Decorator
-     */
-    protected $decorator;
-
-    /**
      * Create a new PostContent instance.
      *
      * @param Factory   $view
      * @param Decorator $decorator
      */
-    public function __construct(Factory $view, Decorator $decorator)
+    public function __construct(Factory $view)
     {
-        $this->view      = $view;
-        $this->decorator = $decorator;
+        $this->view = $view;
     }
 
     /**
@@ -50,6 +41,7 @@ class PostContent
      */
     public function make(IPost $post)
     {
-        $post->setContent($this->view->make($post->getLayoutViewPath(), compact('post'))->render());
+        //$post->setContent($this->view->make($post->getLayoutViewPath(), compact('post'))->render());
+        $post->setContent($this->view->make(\OogleeBConfig::get('config.post_view.view'), compact('post'))->render());
     }
 }

@@ -16,6 +16,7 @@ class PostsController extends Controller {
     public function __construct(ICommandBus $bus, OogleeBlogConfig $config) 
     {
         $this->bus = $bus;
+        $this->config = $config;
     }
 
    /**

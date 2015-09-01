@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Ooglee\Domain\Contracts\IHandler;
 use Ooglee\Domain\Entities\Post;
-use Ooglee\Domain\Entities\Post\IPostRepositoryInterface;
+use Ooglee\Domain\Entities\Post\IPostRepository;
 use Ooglee\Domain\Entities\Post\Validators\CreatePostValidator;
 use Ooglee\Domain\Contracts\IHashingService;
 use Ooglee\Domain\CommandBus\ICommand;

@@ -1,6 +1,7 @@
 <?php namespace Ooglee\Domain\Providers;
 
 use Ooglee\Domain\Providers\LaravelServiceProvider;
+use Ooglee\Infrastructure\Config\OogleeBlogConfig;
 
 class OogleeBlogServiceProvider extends LaravelServiceProvider {
 
@@ -23,9 +24,7 @@ class OogleeBlogServiceProvider extends LaravelServiceProvider {
 	{
 		parent::boot();
 
-		\App::register('Ooglee\Domain\Providers\RouteBlogServiceProvider');
-		\App::register('Ooglee\Domain\Providers\EventBlogServiceProvider');
-		\App::register('Ooglee\Domain\Providers\PostServiceProvider');
+		
 	}
 
 	/**
@@ -36,6 +35,26 @@ class OogleeBlogServiceProvider extends LaravelServiceProvider {
 	public function register()
 	{
  		parent::register();
+
+ 		\App::register('Ooglee\Domain\Providers\RouteBlogServiceProvider');
+		\App::register('Ooglee\Domain\Providers\EventBlogServiceProvider');
+		\App::register('Ooglee\Domain\Providers\PostServiceProvider');
+
+		// Third Party Service Providers
+
+		/**
+        * This allows the facade to work without the developer having to add it to the Alias array in config/app.php
+        * http://fideloper.com/create-facade-laravel-4
+        * Works for L5 too
+        */
+		$this->app->booting(function()
+		{
+			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
+
+			$loader->alias('OogleeBConfig', 'Ooglee\Infrastructure\Config\Facades\OogleeBlogConfigFacade');
+
+			// Third Party Facades
+        });
 	}
 
 	/**

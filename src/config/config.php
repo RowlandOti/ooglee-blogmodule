@@ -62,6 +62,21 @@ return array(
 	 * The Post routes to use with our package
 	 */
 	'post_routes' => array(
+		/**
+		 * Determines whether to load the package routes. If you want to specify them yourself in your own `app/routes.php`
+		 * file then set this to false.
+		 */
+		'path_structure' => '{year}/{month}/{day}'
+		/**
+		 * Determines whether to load the package routes. If you want to specify them yourself in your own `app/routes.php`
+		 * file then set this to false.
+		 */
+	),
+
+	/**
+	 * The Post routes to use with our package
+	 */
+	'blog_routes' => array(
     	/**
 		 * Base URI of the package's pages, e.g. "blog" in http://domain.com/blog and http://domain.com/blog/my-post
 		 */
@@ -69,11 +84,6 @@ return array(
 		/**
 		 * Base URI of the package's pages, e.g. "blog" in http://domain.com/blog and http://domain.com/blog/my-post
 		 */
-		'base_uri_admin' => 'admin/blog',
-		/**
-		 * Determines whether to load the package routes. If you want to specify them yourself in your own `app/routes.php`
-		 * file then set this to false.
-		 */
-		'use_package_routes' => true
+		'base_uri_admin' => 'admin/blog'
 	),
 );

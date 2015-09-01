@@ -5,6 +5,7 @@ use Ooglee\Application\Entities\Post\PostLoader;
 use Ooglee\Application\Entities\Post\PostContent;
 use Ooglee\Application\Entities\Post\PostResponse;
 use Ooglee\Domain\CommandBus\ICommand;
+use Illuminate\Bus\Dispatcher;
 
 /**
  * Class ShowPostHandler --  
@@ -24,22 +25,22 @@ class ShowPostHandler implements IHandler {
 	 */
 
     /**
-     * @var Ooglee\Domain\Events\Dispatcher
+     * @var Dispatcher $dispatcher
      */
     private $dispatcher;
 
     /**
-     * @var Ooglee\Domain\Events\Dispatcher
+     * @var PostLoader $loader
      */
     private $loader;
 
     /**
-     * @var Ooglee\Domain\Events\Dispatcher
+     * @var PostContent $content
      */
     private $content;
 
     /**
-     * @var Ooglee\Domain\Events\Dispatcher
+     * @var PostResponse $response
      */
     private $response;
 
@@ -52,7 +53,7 @@ class ShowPostHandler implements IHandler {
      * @param PostResponse   $response
      * 
      */
-    public function __construct(Dispatcher $dispatcher, PostLoader $loader,PostContent $content,PostResponse $response)
+    public function __construct(Dispatcher $dispatcher, PostLoader $loader, PostContent $content, PostResponse $response)
     {
         $this->dispatcher = $dispatcher;
         $this->loader = $loader;
@@ -67,10 +68,10 @@ class ShowPostHandler implements IHandler {
 
     protected function show(ICommand $command)
     {   
-        $loader->load($command->post);
-        $content->make($command->post);
-        $response->make($command->post);
+        $this->loader->load($command->post);
+        $this->content->make($command->post);
+        $this->response->make($command->post);
 
-        $this->dispatcher->dispatch($post->releaseEvents());
+        //$this->dispatcher->dispatch($command->post->releaseEvents());
     }
 }

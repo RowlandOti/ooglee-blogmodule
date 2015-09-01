@@ -1,9 +1,9 @@
 <?php namespace Ooglee\Application\Entities\Post;
 
+use \App;
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Ooglee\Infrastructure\Config\OogleeBlogConfig;
 use Ooglee\Infrastructure\Presenter\Eloquent\EloquentPresenter;
-use Collective\Html\HtmlBuilder;
 
 /**
  * Class PostPresenter --  
@@ -29,14 +29,14 @@ class PostPresenter extends EloquentPresenter
      *
      * @var IPost
      */
-    protected $object;
+    protected $entity;
 
     /**
      * The config.
      *
      * @var OogleeBlogConfig
      */
-    private $config;
+    protected $config;
 
     /**
      * Create a new PostPresenter instance.
@@ -45,12 +45,11 @@ class PostPresenter extends EloquentPresenter
      * @param SettingRepositoryInterface $settings
      * @param IPost                      $entity
      */
-    public function __construct(HtmlBuilder $html, OogleeBlogConfig $config, IPost $entity)
+    public function __construct(IPost $entity)
     {
-        $this->html     = $html;
-        $this->config   = $config;
-
-        parent::__construct($entity);
+        $this->entity   = $entity;
+        $this->html     = App::make('html');
+        $this->config   = App::make('Ooglee\Infrastructure\Config\OogleeBlogConfig');
     }
 
     /**

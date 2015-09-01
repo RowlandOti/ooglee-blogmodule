@@ -36,7 +36,7 @@ class PostLoader
     /**
      * Load post data to the template.
      *
-     * @param PostInterface $post
+     * @param IPost $post
      */
     public function load(IPost $post)
     {

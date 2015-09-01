@@ -1,8 +1,10 @@
 <?php namespace Ooglee\Framework\Http\Controllers\Application;
 
 use Ooglee\Framework\Http\Controllers\Controller;
+use Ooglee\Application\Entities\Post\PostResolver;
 use Ooglee\Application\Entities\Post\Services\PostService;
 use Ooglee\Infrastructure\Config\OogleeBlogConfig;
+use Ooglee\Domain\Entities\Post\Commands\ShowPostCommand;
 use Ooglee\Domain\CommandBus\ICommandBus;
 
 class PostsController extends Controller {

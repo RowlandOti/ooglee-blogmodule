@@ -39,6 +39,7 @@ class PostResponse
      */
     public function make(IPost $post)
     {
-        $post->setResponse($this->response->view('admin.posts.view', compact('post')));
+        //$post->setResponse($this->response->view('admin.posts.view', compact('post')));
+        $post->setResponse($this->response->view(\OogleeBConfig::get('config.post_view.view'), compact('post')));
     }
 }

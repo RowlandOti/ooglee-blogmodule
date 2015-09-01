@@ -6,6 +6,7 @@ use Ooglee\Infrastructure\Presenter\PresentableTrait;
 use Ooglee\Infrastructure\Presenter\Contracts\IPresentable;
 use Ooglee\Application\Entities\Post\PostPresenter;
 use Ooglee\Domain\Entities\Eloquent\EloquentBaseModel;
+use Ooglee\Domain\Entities\Post\Commands\GetPostPathCommand;
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 
 class PostBaseModel extends EloquentBaseModel implements IPost, IPresentable {
@@ -45,7 +46,16 @@ class PostBaseModel extends EloquentBaseModel implements IPost, IPresentable {
      */
     public function path()
     {
-        return $this->dispatch(new GetPostPath($this));
+        //return $this->dispatch(new GetPostPathCommand($this));
+
+        $data = [
+            'year'  => $this->created_at->format('Y'),
+            'month' => $this->created_at->format('m'),
+            'day'   => $this->created_at->format('d'),
+            'slug'  => $this->getSlug()
+        ];
+
+        return \URL::route('post.view', $data);
     }
 
     /**
@@ -57,11 +67,8 @@ class PostBaseModel extends EloquentBaseModel implements IPost, IPresentable {
     {
         $metaTitle = $this->getMetaTitle();
 
-        if (!$metaTitle && $type = $this->getType()) {
-            $metaTitle = $type->getMetaTitle();
-        }
-
-        if (!$metaTitle) {
+        if (!$metaTitle) 
+        {
             $metaTitle = $this->getTitle();
         }
 
@@ -122,6 +129,16 @@ class PostBaseModel extends EloquentBaseModel implements IPost, IPresentable {
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Get the title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**

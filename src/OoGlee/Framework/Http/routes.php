@@ -5,10 +5,10 @@ Route::group(['namespace' => 'Application'], function()
 {
     #POST MODEL	
 	// List Resources
-    Route::get('blog', 'PostsController@getIndex');
-	//Route::get(Config::get('config.post_routes.base_uri'), 'Application\PostsController@getIndex');
+    //Route::get('blog', 'PostsController@getIndex');
+	Route::get(OogleeBConfig::get('config.blog_routes.base_uri'), ['as' => 'post.index', 'uses' => 'PostsController@getIndex']);
 	// Show resource 
-	Route::get(Config::get('config.post_routes.base_uri').'/{id}', 'PostsController@getShow');
+    Route::get(OogleeBConfig::get('config.blog_routes.base_uri').'/'.OogleeBConfig::get('config.post_routes.path_structure').'/{id}', ['as' => 'post.view', 'uses' => 'PostsController@getShow']);
 });
 
 // Admin routes
@@ -18,14 +18,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
     {
     	#POST MODEL
         // List Resources
-        Route::get(Config::get('config.post_routes.base_uri').'/post', ['as' => 'admin.post.index', 'uses' => 'PostsController@getIndex']);
+        Route::get(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post', ['as' => 'admin.post.index', 'uses' => 'PostsController@getIndex']);
     	// Create Resource GET/POST
-        Route::get(Config::get('config.post_routes.base_uri').'/post/create', ['as' => 'admin.post.create', 'uses' => 'PostsController@getCreate']);
-        Route::post(Config::get('config.post_routes.base_uri').'/post/create', ['as' => 'admin.post.create', 'uses' => 'PostsController@postCreate']);
+        Route::get(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/create', ['as' => 'admin.post.create', 'uses' => 'PostsController@getCreate']);
+        Route::post(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/create', ['as' => 'admin.post.create', 'uses' => 'PostsController@postCreate']);
         // Edit resource GET/POST
-		Route::get(Config::get('config.post_routes.base_uri').'/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostsController@getEdit']);
-		Route::post(Config::get('config.post_routes.base_uri').'/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostsController@postEdit']);
+		Route::get(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostsController@getEdit']);
+		Route::post(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostsController@postEdit']);
         // Delete resource
-		Route::get(Config::get('config.post_routes.base_uri').'/post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'PostsController@postDelete']);
+		Route::get(OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'PostsController@postDelete']);
     });
 });

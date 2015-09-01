@@ -1,7 +1,7 @@
 <?php namespace Ooglee\Application\Entities\Post;
 
-use Ooglee\Domain\Entities\Post\Contract\IPost;
-use Ooglee\Domain\Entities\Post\Contract\IPostRepository;
+use Ooglee\Domain\Entities\Post\Contracts\IPost;
+use Ooglee\Domain\Entities\Post\Contracts\IPostRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -51,7 +51,8 @@ class PostResolver
     public function resolve()
     {
        $url = $this->request->url();
-       $last_seg = end(explode('/', $url));
+       $tmp = explode('/', $url);
+       $last_seg = end($tmp);
 
        return $this->repository->findBySlug($last_seg);
     }

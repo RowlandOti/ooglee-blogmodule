@@ -17,13 +17,14 @@ use Ooglee\Domain\Entities\Post\Contracts\IPost;
 
 class ShowPostCommand extends ACommand implements ICommand {
 
-	/**
-     * @var string
-     */
-    protected $post;
 
+    /**
+     * Show post.
+     *
+     * @param IPost $post
+     */
     public function __construct(IPost $post)
     {
-        $this->post = $post;
+        parent::__construct(array('post' => $post));
     }
 }
