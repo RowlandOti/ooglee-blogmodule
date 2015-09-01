@@ -2,15 +2,27 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
-use Ooglee\Domain\Entities\Eloquent\BaseEloquentModel;
+use Ooglee\Infrastructure\Presenter\PresentableTrait;
+use Ooglee\Infrastructure\Presenter\Contracts\IPresentable;
+use Ooglee\Application\Entities\Post\PostPresenter;
+use Ooglee\Domain\Entities\Eloquent\EloquentBaseModel;
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 
-class PostBaseModel extends BaseEloquentModel implements IPost {
+class PostBaseModel extends EloquentBaseModel implements IPost, IPresentable {
+
+    use PresentableTrait;
 
 	/**
 	 * APostBaseModel to be extended by Post Model.
 	 * 
 	 */
+
+    /**
+     * The posts's presenter path.
+     *
+     * @var string
+     */
+    protected $presenter = 'Ooglee\Application\Entities\Post\PostPresenter';
 
 	/**
      * The posts's content.
