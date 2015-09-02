@@ -13,10 +13,9 @@ class PostsController extends Controller {
     private $config;
 
 
-    public function __construct(ICommandBus $bus, OogleeBlogConfig $config) 
+    public function __construct(ICommandBus $bus) 
     {
         $this->bus = $bus;
-        $this->config = $config;
     }
 
    /**
@@ -27,7 +26,7 @@ class PostsController extends Controller {
     public function getIndex()
     {
       //return resource listing view
-      return view($this->config->get('config.post_index.index_admin'), compact(''));
+      return view(\OogleeBConfig::get('config.post_index.index_admin'), compact(''));
     }
 
    /**
@@ -38,7 +37,7 @@ class PostsController extends Controller {
     public function getCreate()
     {
       //return create resource view
-      return view($this->config->get('config.post_create.view'), compact(''));
+      return view(\OogleeBConfig::get('config.post_create.view'), compact(''));
     }
 
    /**
@@ -56,15 +55,15 @@ class PostsController extends Controller {
         }
         catch(ValidationException $e)
         {
-            return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
+            return Redirect::to(\OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
 
         }
         catch(\DomainException $e)
         {
-            return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
+            return Redirect::to(\OogleeBConfig::get('config.post_routes.base_uri_admin').'/post/create')->withErrors($e->getErrors());
         }
 
-        return Redirect::to($this->config->get('config.post_routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
+        return Redirect::to(\OogleeBConfig::get('config.post_routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
     }
 
      /**
@@ -75,7 +74,7 @@ class PostsController extends Controller {
     public function getEdit($id)
     {
       //return create resource view
-      return view($this->config->get('config.post_edit.view'), compact(''));
+      return view(\OogleeBConfig::get('config.post_edit.view'), compact(''));
     }
 
    /**
@@ -93,14 +92,14 @@ class PostsController extends Controller {
         }
         catch(ValidationException $e)
         {
-            return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/post/{$id}/edit')->withErrors($e->getErrors());
+            return Redirect::to(\OogleeBConfig::get('laravelblog::routes.base_uri_admin').'/post/{$id}/edit')->withErrors($e->getErrors());
         }
         catch(\DomainException $e)
         {
-            return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/post/{$id}/edit')->withErrors($e->getErrors());
+            return Redirect::to(\OogleeBConfig::get('laravelblog::routes.base_uri_admin').'/post/{$id}/edit')->withErrors($e->getErrors());
         }
 
-        return Redirect::to(Config::get('laravelblog::routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
+        return Redirect::to(\OogleeBConfig::get('laravelblog::routes.base_uri_admin').'/posts')->with(['message' => 'success!']);
     }
 
    /**

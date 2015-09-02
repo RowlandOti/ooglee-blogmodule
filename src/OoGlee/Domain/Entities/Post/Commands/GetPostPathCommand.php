@@ -37,11 +37,9 @@ class GetPostPathCommand extends ACommand implements ICommand
     /**
      * Handle the command.
      *
-     * @param OogleeBlogConfig $config
-     * @param Parser           $parser
      * @return string
      */
-    public function handle(OogleeBlogConfig $config, Parser $parser)
+    public function handle()
     {
         $data = [
             'year'  => $this->post->created_at->format('Y'),

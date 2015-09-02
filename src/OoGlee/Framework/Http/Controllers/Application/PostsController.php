@@ -3,7 +3,6 @@
 use Ooglee\Framework\Http\Controllers\Controller;
 use Ooglee\Application\Entities\Post\PostResolver;
 use Ooglee\Application\Entities\Post\Services\PostService;
-use Ooglee\Infrastructure\Config\OogleeBlogConfig;
 use Ooglee\Domain\Entities\Post\Commands\ShowPostCommand;
 use Ooglee\Domain\CommandBus\ICommandBus;
 
@@ -13,14 +12,11 @@ class PostsController extends Controller {
     protected $bus;
     // Post service
     private $modelService;
-    // Blog configuration file
-    private $config;
 
-    public function __construct(ICommandBus $bus, PostService $modelService, OogleeBlogConfig $config)
+    public function __construct(ICommandBus $bus, PostService $modelService)
     {
         $this->modelService = $modelService;
         $this->bus = $bus;
-        $this->config = $config;
     }
 
    /**
@@ -32,7 +28,7 @@ class PostsController extends Controller {
     {   
         $response = $this->modelService->getAll();
         //return resources listing view
-        return view($this->config->get('config.post_index.index'), compact('response'));
+        return view(\OogleeBConfig::get('config.post_index.index'), compact('response'));
     }
 
      /**
