@@ -1,11 +1,11 @@
-<?php namespace Ooglee\Domain\Entities\Post\Category\Validators;
+<?php namespace Ooglee\Domain\Entities\Post\Type\Validators;
 
 use Illuminate\Validation\Factory;
 use Ooglee\Domain\Validation\ValidationException;
 use Ooglee\Domain\Validation\IValidator;
 use Ooglee\Domain\CommandBus\ICommand;
 
-class CategoryValidator implements ValidatorInterface {
+class TypeValidator implements ValidatorInterface {
 
     /**
      * @var \Illuminate\Validation\Factory

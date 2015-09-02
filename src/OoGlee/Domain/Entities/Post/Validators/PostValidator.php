@@ -2,7 +2,7 @@
 
 use Illuminate\Validation\Factory;
 use Ooglee\Domain\Validation\ValidationException;
-use Ooglee\Domain\Validation\ValidatorInterface;
+use Ooglee\Domain\Validation\IValidator;
 use Ooglee\Domain\CommandBus\ICommand;
 
 class PostValidator implements ValidatorInterface {
