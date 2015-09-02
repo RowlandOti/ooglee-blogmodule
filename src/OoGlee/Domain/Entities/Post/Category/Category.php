@@ -27,7 +27,8 @@ class Category extends ACategoryBaseModel implements ICategory {
      */
     public function posts()
     {
-        return $this->hasMany('Ooglee\Domain\Entities\Post\Post');
+        // Arguments (1) the model name, (2) the pivot table name, (3) the local key and (4) the foreign key.
+        return $this->hasMany('Ooglee\Domain\Entities\Post\Post', 'category_id');
     }
 
     public function __toString()

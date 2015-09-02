@@ -37,7 +37,8 @@ class Post extends PostBaseModel implements IAggregateRoot, IPost {
    */
   public function category()
   {
-      return $this->belongsTo('Ooglee\Domain\Entities\Post\Category\Category');
+    // Arguments (1) the model name, (2) the pivot table name, (3) the local key and (4) the foreign key.
+    return $this->belongsTo('Ooglee\Domain\Entities\Post\Category\Category');
   }
 
   /**

@@ -1,8 +1,5 @@
 <?php namespace Ooglee\Domain\Entities\Post\Category\Contracts;
 
-
-use Illuminate\Http\Response;
-
 /**
  * Interface IPost
  *
@@ -22,11 +19,18 @@ interface ICategory
     public function path();
 
     /**
-     * Get the string ID.
+     * Get the ID.
+     *
+     * @return integer
+     */
+    public function getId();
+
+    /**
+     * Get the name.
      *
      * @return string
      */
-    public function getStrId();
+    public function getName();
 
     /**
      * Get the slug.
@@ -36,47 +40,10 @@ interface ICategory
     public function getSlug();
 
     /**
-     * Get the category.
+     * Get the related posts.
      *
-     * @return null|CategoryInterface
+     * @return EntryCollection
      */
-    public function getCategory();
+    public function getPosts();
 
-   
-    /**
-     * Get the path to the post's type layout.
-     *
-     * @return string
-     */
-    public function getLayoutViewPath();
-
-    /**
-     * Get the content.
-     *
-     * @return null|string
-     */
-    public function getContent();
-
-    /**
-     * Set the content.
-     *
-     * @param $content
-     * @return $this
-     */
-    public function setContent($content);
-
-    /**
-     * Get the response.
-     *
-     * @return Response|null
-     */
-    public function getResponse();
-
-    /**
-     * Set the response.
-     *
-     * @param $response
-     * @return $this
-     */
-    public function setResponse(Response $response);
 }
