@@ -5,7 +5,7 @@ use Ooglee\Application\Entities\Post\PostLoader;
 use Ooglee\Application\Entities\Post\PostContent;
 use Ooglee\Application\Entities\Post\PostResponse;
 use Ooglee\Domain\CommandBus\ICommand;
-use Illuminate\Bus\Dispatcher;
+use Ooglee\Domain\Events\Dispatcher;
 
 /**
  * Class ShowPostHandler --  
@@ -72,6 +72,6 @@ class ShowPostHandler implements IHandler {
         $this->content->make($command->post);
         $this->response->make($command->post);
 
-        //$this->dispatcher->dispatch($command->post->releaseEvents());
+        $this->dispatcher->dispatch($command->post->releaseEvents());
     }
 }

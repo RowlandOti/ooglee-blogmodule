@@ -1,9 +1,7 @@
-<?php namespace App\Ooglee\Application\Listeners;
+<?php namespace Ooglee\Application\Listeners;
 
-
-use Illuminate\Database\Eloquent\Model;
-use App\Ooglee\Domain\Contracts\IHandler;
-use App\Ooglee\Domain\Entities\User
+use Ooglee\Domain\Contracts\IListener;
+use Ooglee\Domain\Contracts\IEvent;
 
 class SendWelcomeMailListener implements IListener {
 

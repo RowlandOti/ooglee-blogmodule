@@ -1,6 +1,6 @@
-<?php namespace Ooglee\Domain\Entities\User\Events;
+<?php namespace Ooglee\Domain\Entities\Post\Events;
 
-use Ooglee\Domain\Entities\Post\Post;
+use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Ooglee\Domain\Entities\AEvent;
 use Ooglee\Domain\Contracts\IEvent;
 
@@ -22,7 +22,7 @@ class PostWasCreatedEvent extends AEvent implements IEvent
      *
      * @param  Post 
      */
-    public function __construct(Post $post)
+    public function __construct(IPost $post)
     {
         $this->post = $post;
     }

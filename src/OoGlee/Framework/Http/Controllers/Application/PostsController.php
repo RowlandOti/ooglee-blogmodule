@@ -3,6 +3,7 @@
 use Ooglee\Framework\Http\Controllers\Controller;
 use Ooglee\Application\Entities\Post\PostResolver;
 use Ooglee\Application\Entities\Post\Services\PostService;
+use Ooglee\Domain\Entities\Post\Events\PostWasViewedEvent;
 use Ooglee\Domain\Entities\Post\Commands\ShowPostCommand;
 use Ooglee\Domain\CommandBus\ICommandBus;
 
@@ -39,11 +40,16 @@ class PostsController extends Controller {
     */
     public function getShow(PostResolver $resolver)
     {
+        // Check to see if post exists
         if (!$post = $resolver->resolve()) 
         {
             abort(404);
         }
 
+        // Record PostWasViewedEvent
+        $post->recordEvents(new PostWasViewedEvent($post));
+        
+        // Run ShowPostCommand
         $command = new ShowPostCommand($post);
 
         try 
@@ -55,6 +61,7 @@ class PostsController extends Controller {
             
         }
 
+        // Show post
         return $post->getResponse();
         
     }

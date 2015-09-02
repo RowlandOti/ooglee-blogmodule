@@ -78,10 +78,10 @@ class Post extends PostBaseModel implements IAggregateRoot, IPost {
           //throw new DomainException('Post must be assigned a Category');
       //}
 
-      //if(!$this->exists)
-      //{
-         // $this->recordEvent(new PostWasCreatedEvent($this));
-      //}
+      if(!$this->exists)
+      {
+        $this->recordEvent(new PostWasCreatedEvent($this));
+      }
 
       $saved = parent::save($options);
 

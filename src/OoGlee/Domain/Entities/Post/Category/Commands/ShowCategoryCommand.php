@@ -7,7 +7,7 @@ use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
 
 /**
  * Class ShowCategoryCommand -- Defines that our application can 
- * create a post. This functions like a Data Transfer Object (DTO)
+ * create a category. This functions like a Data Transfer Object (DTO)
  * 
  * @link          http://skyllabler.com/ooglee
  * @author        Skyllabler, Inc. <coder@skyllabler.com>
@@ -20,10 +20,10 @@ class ShowCategoryCommand extends ACommand implements ICommand {
 	/**
      * @var string
      */
-    protected $post;
+    protected $category;
 
-    public function __construct(ICategory $post)
+    public function __construct(ICategory $category)
     {
-        $this->post = $post;
+        $this->category = $category;
     }
 }

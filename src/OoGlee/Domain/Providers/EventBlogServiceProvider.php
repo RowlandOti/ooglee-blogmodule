@@ -1,8 +1,7 @@
 <?php namespace Ooglee\Domain\Providers;
 
-use Ooglee\Domain\Events\UserRegisteredEvent;
-use Ooglee\Application\Listeners\UserWasRegisteredListener;
-use Ooglee\Application\Listeners\SendWelcomeMailListener;
+use Ooglee\Domain\Events\PostWasViewedEvent;
+use Ooglee\Application\Listeners\IncrementPostViewsListener;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -16,10 +15,9 @@ class EventBlogServiceProvider extends ServiceProvider {
 	 */
 	protected $listen = [
 		
-        UserRegisteredEvent::class => [
-								        UserWasRegisteredListener::class,
-								        SendWelcomeMailListener::class,
-    								  ],
+		PostWasViewedEvent::class =>  [
+							            IncrementPostViewsListener::class,
+							          ],
 	];
 
 	/**
