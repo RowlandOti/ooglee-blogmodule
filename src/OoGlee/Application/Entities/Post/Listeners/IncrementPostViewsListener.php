@@ -1,4 +1,4 @@
-<?php namespace Ooglee\Application\Listeners;
+<?php namespace Ooglee\Application\Entities\Post\Listeners;
 
 use Ooglee\Domain\Contracts\IEvent;
 use Ooglee\Domain\Contracts\IListener;
@@ -15,9 +15,20 @@ class IncrementPostViewsListener implements IListener
     }
 
     /**
+     * Method called by Dispatcher
+     *
+     * @param IEvent $event
+     * @return void
+     */
+    public function handle(IEvent $event)
+    {
+       $this->listenerHandle($event);
+    }
+
+    /**
      * Update the post view count
      *
-     * @param PostWasViewed $event
+     * @param IEvent $event
      * @return void
      */
     public function listenerHandle(IEvent $event)
