@@ -1,7 +1,7 @@
 Laravel Blog
 ============
 
-A Laravel 5 ooglee-module to add a simple blog to a site
+A Laravel 5 Ooglee-module to add a simple blog to a site
 
 ## Features
 
@@ -28,12 +28,15 @@ Run
 
 Add the following to app/config/app.php
 
-    'Ooglee\Domain\Providers\OogleBlogServiceProvider'
+    'Rowland\LaravelBlog\LaravelBlogServiceProvider'
 
-Publish the config, views, migration files
+Run the package migration
 
-    php artisan vendor:publish
+    php artisan migrate --package=rowland/laravelblog
 
+Publish the config
+
+    php artisan config:publish rowland/laravelblog
 
 Optionally tweak the settings in the many config files for your app
 
@@ -41,9 +44,9 @@ Optionally copy the administrator config file (`src/config/administrator/posts.p
 
 Create the relevant image upload directories that you specify in your config, e.g.
 
-    public/uploads/vendor/rowland/ooglee-blog/main_image/original
-    public/uploads/vendor/rowland/ooglee-blog/main_image/thumbnail
-    public/uploads/vendor/rowland/ooglee-blog/main_image/resized
+    public/uploads/packages/rowland/laravelblog/main_image/original
+    public/uploads/packages/rowland/laravelblog/main_image/thumbnail
+    public/uploads/packages/rowland/laravelblog/main_image/resized
 
 ## Faker seed
 
@@ -92,8 +95,8 @@ The package's views are actually really simple, and most of the presentation is 
  you can also still make use of the partials provided, if you want to.
 
 To override any view in your own app, just create the following directories and copy the file from the package into it, then hack away
-* `resources/views/vendor/rowland/ooglee-blog/posts`
-* `resources/views/vendor/rowland/ooglee-blog/partials`
+* `app/views/packages/rowland/laravelblog/posts`
+* `app/views/packages/rowland/laravelblog/partials`
 
 ## Extending the package
 
