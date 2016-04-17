@@ -1,6 +1,8 @@
 Laravel Blog
 ============
 
+#Status [](https://travis-ci.org/RowlandOti/ooglee-blogmodule.svg)
+
 A Laravel 5 Ooglee-module to add a simple blog to a site
 
 ## Features
