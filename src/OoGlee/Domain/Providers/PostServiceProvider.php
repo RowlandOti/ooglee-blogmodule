@@ -9,6 +9,10 @@ use Ooglee\Domain\Entities\Post\Post;
 */
 class PostServiceProvider extends ServiceProvider {
 
+  /**
+    * Registers the service in the IoC Container
+    * 
+    */
 	 public function register() 
    {
 	 	  // Bind the returned class to the namespace 'Ooglee\Domain\Entities\Post\Contracts\IPostRepository'
