@@ -1,6 +1,6 @@
 <?php namespace Ooglee\Framework\Http\Controllers\Admin;
 
-use Ooglee\Framework\Http\Controller;
+use Ooglee\Framework\Http\Controllers\Controller;
 use Ooglee\Domain\CommandBus\ICommandBus;
 use Ooglee\Domain\Validation\ValidationException;
 use Ooglee\Domain\Entities\Post\Commands\CreatePostCommand;
