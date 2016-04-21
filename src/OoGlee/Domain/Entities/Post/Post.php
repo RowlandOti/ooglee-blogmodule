@@ -6,6 +6,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Ooglee\Domain\Events\EventableTrait;
+use Ooglee\Domain\Entities\Post\Events\PostWasCreatedEvent;
 use Ooglee\Domain\Entities\Post\Contracts\IPost;
 use Ooglee\Domain\Entities\Post\Category\Contracts\ICategory;
 use Ooglee\Domain\Entities\Post\PostBaseModel;
@@ -80,7 +81,7 @@ class Post extends PostBaseModel implements IAggregateRoot, IPost {
 
       if(!$this->exists)
       {
-        $this->recordEvent(new PostWasCreatedEvent($this));
+        $this->recordEvents(new PostWasCreatedEvent($this));
       }
 
       $saved = parent::save($options);
